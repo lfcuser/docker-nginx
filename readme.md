@@ -1,5 +1,7 @@
 colima start --arch aarch64
+
 docker compose up
+
 colima stop
 
 curl -v \
