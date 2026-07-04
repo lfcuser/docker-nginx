@@ -1,26 +1,26 @@
 colima start --arch aarch64
-\n
+\
 docker compose up
-\n
+\
 colima stop
-
+\
 curl -v \
   -H "X-Test: ' OR 1=1 --" \
   -H "X-Forwarded-For: 127.0.0.1,evil" \
   -H "Authorization: Bearer badpayload" \
   http://localhost:8080/
-
+\
 curl -v \
   -H "X-Test: ' \n\r\\n\\r" \
   -H "X-Forwarded-For: 127.0.0.1,evil" \
   -H "Authorization: Bearer badpayload" \
   http://localhost:8080/
 
-
+\
 curl -v http://localhost:8080/ \
   -H $'X-Test: value\rX'
 result: no log, 400 Bad Request
-
+\
 curl -v http://localhost:8080/ \
   -H $'X-Test: test\x00Injected'
 result: no log, 400 Bad Request
